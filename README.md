@@ -1,4 +1,4 @@
-# JavaEE project nr 1
+#JavaEE
 
 ---------
 

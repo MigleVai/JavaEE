@@ -4,8 +4,8 @@ package lt.vu.entities;
 public class Recipe {
 
   private String title;
-  private String directions;
   private long id;
+  private String description;
 
 
   public String getTitle() {
@@ -17,21 +17,21 @@ public class Recipe {
   }
 
 
-  public String getDirections() {
-    return directions;
-  }
-
-  public void setDirections(String directions) {
-    this.directions = directions;
-  }
-
-
   public long getId() {
     return id;
   }
 
   public void setId(long id) {
     this.id = id;
+  }
+
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 }

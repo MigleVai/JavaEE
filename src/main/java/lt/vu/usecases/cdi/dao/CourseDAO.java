@@ -9,14 +9,14 @@ import java.util.List;
 
 @ApplicationScoped
 public class CourseDAO {
-    @Inject
+       @Inject
     private EntityManager em;
 
     public void create(Course course) {
         em.persist(course);
     }
 
-    public List<Course> getAllCourses() {
-        return em.createNamedQuery("Course.findAll", Course.class).getResultList();
-    }
+//    public List<Course> getAllCourses() {
+////        return em.createNamedQuery("Course.findAll", Course.class).getResultList();
+//    }
 }

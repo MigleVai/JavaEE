@@ -21,6 +21,7 @@ import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
+
 @Named
 @ConversationScoped
 @Slf4j
@@ -31,11 +32,10 @@ public class ConversationUseCaseControllerCdi implements Serializable {
     private enum CURRENT_FORM {
         CREATE_COURSE, CREATE_STUDENT, CONFIRMATION
     }
-
     @Inject
     private EntityManager em;
 
-    @Inject
+//    @Inject
     @Getter
     private Conversation conversation;
 

@@ -26,7 +26,7 @@ public class CompA implements Serializable {
                 resultInFuture = null;
                 return "Result is finally ready, and it is: " + result;
             } else {
-                return "";
+                return "Result is not yet ready... please wait a moment...";
             }
         }
     }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+>
+<h:head/>
+<h:body>
+    <ui:composition template="/WEB-INF/templates/mainLayout.xhtml">
+        <ui:param name="pageName" value="Add recipe"/>
+
+        <ui:define name="content">
+
+            <h:form>
+                <table>
+                    <tr>
+                        <td>
+                            <p:dataTable value="#{recipeController.recipes}" var="recipe">
+                            <p:column headerText="Title">
+                                <h:outputText value="#{recipe.title}" />
+                            </p:column>
+                                <p:column headerText="Description">
+                                <h:outputText value="#{recipe.description}" />
+                                </p:column>
+                            </p:dataTable>
+                            <h:panelGrid columns="3">
+                                <p:outputLabel for="title" value="Title"/>
+                                <p:inputText id="title" value="#{recipeController.recipe.title}"/>
+                                <p:message for="title"/>
+
+                                <p:outputLabel for="description" value="Description"/>
+                                <p:inputText id="description" value="#{recipeController.recipe.description}"/>
+                                <p:message for="description"/>
+                            </h:panelGrid>
+                        </td>
+                    </tr>
+                </table>
+
+                <p:commandButton value="Create recipe"
+                                 action="#{recipeController.createRecipe()}"
+                                 ajax="false"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

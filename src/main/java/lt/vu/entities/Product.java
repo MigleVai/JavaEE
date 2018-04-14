@@ -1,15 +1,23 @@
 package lt.vu.entities;
 
 
-public class Product {
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-  private String name;
-  private long calories;
-  private long amount;
-  private long id;
-  private java.sql.Date validuntil;
-  private long locationId;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import org.apache.johnzon.mapper.JohnzonIgnore;
 
+@Entity
+@Table(name = "PRODUCT")
+@NamedQueries({
+        @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
+        @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
+        @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name")})
+@EqualsAndHashCode(of = "name")
+@ToString(of = {"id", "name", "calories", "amount", "validunitl"})
+public class Product implements Serializable {
 
   public String getName() {
     return name;
@@ -38,11 +46,11 @@ public class Product {
   }
 
 
-  public long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -56,12 +64,34 @@ public class Product {
   }
 
 
-  public long getLocationId() {
-    return locationId;
+  public Location getLocation() {
+    return location;
   }
 
-  public void setLocationId(long locationId) {
-    this.locationId = locationId;
+  public void setLocation(Location location) {
+    this.location = location;
   }
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "ID")
+  private Integer id;
+
+  @Size(min = 4, max = 50)
+  @Column(name = "NAME")
+  private String name;
+
+  @Column(name = "CALORIES")
+  private long calories;
+
+  @Column(name = "AMOUNT")
+  private long amount;
+
+  @Column(name = "VALIDUNITL")
+  private java.sql.Date validuntil;
+
+  @JoinColumn(name = "LOCATION_ID", referencedColumnName = "ID")
+  @ManyToOne
+  @JohnzonIgnore
+  private Location location;
 }

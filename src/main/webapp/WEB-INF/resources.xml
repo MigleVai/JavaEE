@@ -2,14 +2,14 @@
 <tomee>
     <!-- see http://tomee.apache.org/containers-and-resources.html -->
     <!-- see http://tomee.apache.org/datasource-config.html -->
-
+    <!---->
     <!-- H2 Database -->
-    <Resource id="StudentsDataSource" type="DataSource">
+    <Resource id="JavaEE" type="DataSource">
         JdbcDriver = org.h2.Driver
-        JdbcUrl = jdbc:h2:~/h2database/StudentsDB;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM 'classpath:h2database/createdb.sql'
+        JdbcUrl = jdbc:h2:~/h2database/JavaEE;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM 'classpath:h2database/createdb.sql'
+        InitialSize = 1
         UserName = sa
         Password = sa
-        InitialSize = 1
         MaxActive = 10
         MaxWaitTime = 10 seconds
         MaxIdle = 2

@@ -43,8 +43,8 @@
 
                                 <h:outputLabel for="productListF" value="Products"/>
                                 <h:selectManyListbox id="productListF" value="#{recipeController.products}">
-                                    <f:selectItems value="#{productController.productNames}" var="productName"
-                                                  itemValue="#{productName}" />
+                                    <f:selectItems value="#{productController.products}" var="product"
+                                    itemValue="#{product.name}" />
                                 </h:selectManyListbox>
                             </h:panelGrid>
                         </td>

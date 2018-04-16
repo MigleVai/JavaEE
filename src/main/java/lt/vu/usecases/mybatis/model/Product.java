@@ -1,6 +1,7 @@
 package lt.vu.usecases.mybatis.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Product {
     /**
@@ -11,6 +12,20 @@ public class Product {
      * @mbg.generated Mon Apr 16 17:11:18 EEST 2018
      */
     private Integer id;
+    private Location location;
+    private List<Recipe> recipes;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location loc){this.location = loc;}
+
+    public List<Recipe> getRecipeList() {
+        return recipes;
+    }
+
+    public void setRecipeList(List<Recipe> rec){this.recipes = rec;}
 
     /**
      *
@@ -37,7 +52,7 @@ public class Product {
      *
      * @mbg.generated Mon Apr 16 17:11:18 EEST 2018
      */
-    private Date validunitl;
+    private String validunitl;
 
     /**
      *
@@ -137,7 +152,7 @@ public class Product {
      *
      * @mbg.generated Mon Apr 16 17:11:18 EEST 2018
      */
-    public Date getValidunitl() {
+    public String getValidunitl() {
         return validunitl;
     }
 
@@ -149,7 +164,7 @@ public class Product {
      *
      * @mbg.generated Mon Apr 16 17:11:18 EEST 2018
      */
-    public void setValidunitl(Date validunitl) {
+    public void setValidunitl(String validunitl) {
         this.validunitl = validunitl;
     }
 

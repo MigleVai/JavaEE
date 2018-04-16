@@ -31,20 +31,20 @@ public class Product implements Serializable {
   }
 
 
-  public long getCalories() {
+  public Long getCalories() {
     return calories;
   }
 
-  public void setCalories(long calories) {
+  public void setCalories(Long calories) {
     this.calories = calories;
   }
 
 
-  public long getAmount() {
+  public Long getAmount() {
     return amount;
   }
 
-  public void setAmount(long amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
@@ -87,10 +87,10 @@ public class Product implements Serializable {
   private String name;
 
   @Column(name = "CALORIES")
-  private long calories;
+  private Long calories;
 
   @Column(name = "AMOUNT")
-  private long amount;
+  private Long amount;
 
   @Column(name = "VALIDUNITL")
   private String validuntil;

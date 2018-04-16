@@ -48,14 +48,11 @@ public class RecipeController {
         {
             tempID++;
         }
-        log.info("HI " + products.toString());
         List<Product> prod = findProductsByName();
-        log.info("Hello + " + prod.toString());
         recipe.setProductList(prod);
         recipe.setId(tempID);
-        log.info("HEY");
         recipeDAO.create(recipe);
-        log.info("Recipe titled: " + recipe.getTitle() + " was created...");
+        recipe = new Recipe();
         loadRecipes();
     }
 
@@ -65,9 +62,8 @@ public class RecipeController {
             Product prod = productDAO.findByName(item);
             productFinal.add(prod);
         }
-        log.info(productFinal.toString());
         return productFinal;
-    };
+    }
 
     public List<String> getRecipeNames() {
         return recipes.stream().map(Recipe::getTitle).collect(Collectors.toList());

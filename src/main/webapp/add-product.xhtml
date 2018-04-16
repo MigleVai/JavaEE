@@ -29,14 +29,14 @@
                                     <h:outputText value="#{product.calories}" />
                                 </p:column>
                                 <p:column headerText="Valid Until">
-                                    <h:outputText value="#{product.validuntil}" />
+                                    <h:outputText value="#{product.validunitl}" />
                                 </p:column>
                                 <p:column headerText="Location">
                                     <h:outputText value="#{product.location.name}" />
                                 </p:column>
                                 <p:column headerText="Recipes">
                                     <h:selectOneMenu>
-                                        <f:selectItems value="#{product.recipeList}" var="recipe"
+                                        <f:selectItems value="#{product.getRecipeList()}" var="recipe"
                                                        itemValue="#{recipe.title}" />
                                     </h:selectOneMenu>
                                 </p:column>>
@@ -55,13 +55,13 @@
                                 <p:message for="calories"/>
 
                                 <p:outputLabel for="validuntil" value="Valid Until"/>
-                                <p:inputText type="date" id="validuntil" value="#{productController.product.validuntil}"/>
+                                <p:inputText type="date" required="true" id="validuntil" value="#{productController.product.validunitl}"/>
                                 <p:message for="validuntil"/>
 
                                 <p:outputLabel for="location" value="Location"/>
                                 <h:selectOneMenu id="location" value="#{productController.locationName}">
-                                    <f:selectItems value="#{locationController.locationNames}" var="locTitle"
-                                                   itemValue="#{locTitle}" />
+                                    <f:selectItems value="#{locationController.locations}" var="location"
+                                                   itemValue="#{location.name}" />
                                 </h:selectOneMenu>
                             </h:panelGrid>
                         </td>

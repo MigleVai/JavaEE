@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="lt.vu.usecases.mybatis.model.Location" alias="Location"/>
+        <typeAlias type="lt.vu.usecases.mybatis.model.Product" alias="Product"/>
+        <typeAlias type="lt.vu.usecases.mybatis.model.Recipe" alias="Recipe"/>
+        <typeAlias type="lt.vu.usecases.mybatis.model.RecipeProduct" alias="RecipeProduct"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI">
+                <!--<property name="data_source" value="java:global/StudentsDataSource"/>-->
+                <property name="data_source" value="openejb:Resource/JavaEE"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis/xml/LocationMapper.xml"/>
+        <mapper resource="mybatis/xml/ProductMapper.xml"/>
+        <mapper resource="mybatis/xml/RecipeMapper.xml"/>
+        <mapper resource="mybatis/xml/RecipeProductMapper.xml"/>
+    </mappers>
+</configuration>

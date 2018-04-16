@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import lt.vu.entities.Location;
 import lt.vu.usecases.cdi.dao.LocationDAO;
+import lt.vu.usecases.mybatis.dao.LocationMapper;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -30,6 +31,8 @@ public class LocationController {
 
     @Inject
     private LocationDAO locationDAO;
+    @Inject
+    private LocationMapper locationMapper;
 
     @Transactional
     public void createLocation() {

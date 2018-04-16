@@ -21,4 +21,7 @@ public class LocationDAO {
         return em.createNamedQuery("Location.findAll", Location.class).getResultList();
     }
 
+    public Location findByName(String name){
+        return  em.createNamedQuery("Location.findByName" ,Location.class).setParameter( "name", name).getSingleResult();
+    }
 }

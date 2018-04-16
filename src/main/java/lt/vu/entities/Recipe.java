@@ -7,6 +7,9 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.johnzon.mapper.JohnzonIgnore;
 
 @Entity
 @Table(name = "RECIPE")
@@ -44,6 +47,9 @@ public class Recipe implements Serializable{
     this.description = description;
   }
 
+  public  List<Product> getProductList(){return  productList;}
+  public  void setProductList(List<Product> products){this.productList = products;}
+
   @Id
   //@GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ID")
@@ -56,4 +62,11 @@ public class Recipe implements Serializable{
   @Size(min = 4, max = 50)
   @Column(name = "DESCRIPTION")
   private String description;
+
+  @JoinTable(name = "RECIPE_PRODUCT", joinColumns = {
+          @JoinColumn(name = "RECIPE_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
+          @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")})
+  @ManyToMany
+  @JohnzonIgnore
+  private List<Product> productList = new ArrayList<>();
 }

@@ -7,6 +7,9 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.johnzon.mapper.JohnzonIgnore;
 
 @Entity
@@ -55,12 +58,12 @@ public class Product implements Serializable {
   }
 
 
-  public java.sql.Date getValiduntil() {
+  public String getValiduntil() {
     return validuntil;
   }
 
-  public void setValiduntil(java.sql.Date validuntil) {
-    this.validuntil = validuntil;
+  public void setValiduntil(String validuntil){
+    this.validuntil  = validuntil;
   }
 
 
@@ -71,9 +74,11 @@ public class Product implements Serializable {
   public void setLocation(Location location) {
     this.location = location;
   }
+  public List<Recipe> getRecipeList(){return recipeList;}
+  public void setRecipeList(List<Recipe> recip){this.recipeList = recip;}
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  //@GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ID")
   private Integer id;
 
@@ -88,10 +93,14 @@ public class Product implements Serializable {
   private long amount;
 
   @Column(name = "VALIDUNITL")
-  private java.sql.Date validuntil;
+  private String validuntil;
 
   @JoinColumn(name = "LOCATION_ID", referencedColumnName = "ID")
   @ManyToOne
   @JohnzonIgnore
   private Location location;
+
+  @ManyToMany(mappedBy = "productList")
+  private List<Recipe> recipeList = new ArrayList<>();
+
 }

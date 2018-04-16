@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+>
+<h:head/>
+<h:body>
+    <ui:composition template="/WEB-INF/templates/mainLayout.xhtml">
+        <ui:param name="pageName" value="Add product"/>
+
+        <ui:define name="content">
+
+            <h:form>
+                <table>
+                    <tr>
+                        <td>
+                            <p:dataTable value="#{productController.products}" var="product">
+                                <p:column headerText="Name">
+                                    <h:outputText value="#{product.name}" />
+                                </p:column>
+                                <p:column headerText="Amount">
+                                    <h:outputText value="#{product.amount}" />
+                                </p:column>
+                                <p:column headerText="Calories">
+                                    <h:outputText value="#{product.calories}" />
+                                </p:column>
+                                <p:column headerText="Valid Until">
+                                    <h:outputText value="#{product.validuntil}" />
+                                </p:column>
+                                <p:column headerText="Location">
+                                    <h:outputText value="#{product.location.name}" />
+                                </p:column>
+                                <p:column headerText="Recipes">
+                                    <h:selectOneMenu>
+                                        <f:selectItems value="#{product.recipeList}" var="recipe"
+                                                       itemValue="#{recipe.title}" />
+                                    </h:selectOneMenu>
+                                </p:column>>
+                            </p:dataTable>
+                            <h:panelGrid columns="3">
+                                <p:outputLabel for="name" value="Name"/>
+                                <p:inputText id="name" value="#{productController.product.name}"/>
+                                <p:message for="name"/>
+
+                                <p:outputLabel for="amount" value="amount"/>
+                                <p:inputText id="amount" value="#{productController.product.amount}"/>
+                                <p:message for="amount"/>
+
+                                <p:outputLabel for="calories" value="calories"/>
+                                <p:inputText id="calories" value="#{productController.product.calories}"/>
+                                <p:message for="calories"/>
+
+                                <p:outputLabel for="validuntil" value="validuntil"/>
+                                <p:inputText type="date" id="validuntil" value="#{productController.product.validuntil}"/>
+                                <p:message for="validuntil"/>
+
+                                <p:outputLabel for="location" value="Location"/>
+                                <h:selectOneMenu id="location" value="#{productController.locationName}">
+                                    <f:selectItems value="#{locationController.locationNames}" var="locTitle"
+                                                   itemValue="#{locTitle}" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                        </td>
+                    </tr>
+                </table>
+
+                <p:commandButton value="Create product"
+                                 action="#{productController.createProduct()}"
+                                 ajax="false"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

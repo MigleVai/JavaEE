@@ -22,9 +22,16 @@
                             <p:column headerText="Title">
                                 <h:outputText value="#{recipe.title}" />
                             </p:column>
-                                <p:column headerText="Description">
+                            <p:column headerText="Description">
                                 <h:outputText value="#{recipe.description}" />
-                                </p:column>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel for="products" value="Products"/>
+                                <h:selectOneMenu id="products">
+                                    <f:selectItems value="#{recipe.productList}" var="product"
+                                                   itemValue="#{product.name}" />
+                                </h:selectOneMenu>
+                            </p:column>>
                             </p:dataTable>
                             <h:panelGrid columns="3">
                                 <p:outputLabel for="title" value="Title"/>
@@ -34,6 +41,12 @@
                                 <p:outputLabel for="description" value="Description"/>
                                 <p:inputText id="description" value="#{recipeController.recipe.description}"/>
                                 <p:message for="description"/>
+
+                                <h:outputLabel for="productListF" value="Products"/>
+                                <h:selectManyListbox id="productListF" value="#{recipeController.products}">
+                                    <f:selectItems value="#{productController.productNames}" var="productName"
+                                                  itemValue="#{productName}" />
+                                </h:selectManyListbox>
                             </h:panelGrid>
                         </td>
                     </tr>

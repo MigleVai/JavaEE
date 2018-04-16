@@ -20,5 +20,7 @@ public class ProductDAO {
     public List<Product> getAllProducts() {
         return em.createNamedQuery("Product.findAll", Product.class).getResultList();
     }
-
+    public Product findByName(String name){
+        return  em.createNamedQuery("Product.findByName" ,Product.class).setParameter( "name", name).getSingleResult();
+    }
 }

@@ -6,6 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:o="http://omnifaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 >
 <h:head/>
 <h:body>
@@ -19,18 +20,28 @@
                     <tr>
                         <td>
                             <p:dataTable value="#{recipeController.recipes}" var="recipe">
-                            <p:column headerText="Title">
-                                <h:outputText value="#{recipe.title}" />
-                            </p:column>
-                            <p:column headerText="Description">
-                                <h:outputText value="#{recipe.description}" />
-                            </p:column>
-                            <p:column headerText="Products">
-                                <h:selectOneMenu id="products">
-                                    <f:selectItems value="#{recipe.productList}" var="product"
-                                                   itemValue="#{product.name}" />
-                                </h:selectOneMenu>
-                            </p:column>>
+                                <p:column headerText="Update">
+                                    <!--<button>-->
+                                        <h:link value="#{recipe.title}" outcome="edit_recipe?Id=#{recipe.id}" />
+                                    <!--</button>-->
+                                </p:column>
+                                <p:column headerText="Title">
+                                    <h:outputText value="#{recipe.title}"/>
+                                </p:column>
+                                <!--<p:column headerText="Edit Title"> a:placeholder="#{recipe.title}"-->
+                                    <!--<h:commandButton value="update" action="#{editRecipe.EditRecipeTitle()}">-->
+                                        <!--<f:param name="id" value="#{editRecipe.recipe.id}"/>-->
+                                    <!--</h:commandButton>-->
+                                <!--</p:column>-->
+                                <p:column headerText="Description">
+                                    <h:outputText value="#{recipe.description}"/>
+                                </p:column>
+                                <p:column headerText="Products">
+                                    <h:selectOneMenu id="products">
+                                        <f:selectItems value="#{recipe.productList}" var="product"
+                                                       itemValue="#{product.name}"/>
+                                    </h:selectOneMenu>
+                                </p:column>>
                             </p:dataTable>
                             <h:panelGrid columns="3">
                                 <p:outputLabel for="title" value="Title"/>
@@ -44,7 +55,7 @@
                                 <h:outputLabel for="productListF" value="Products"/>
                                 <h:selectManyListbox id="productListF" value="#{recipeController.products}">
                                     <f:selectItems value="#{productController.products}" var="product"
-                                    itemValue="#{product.name}" />
+                                                   itemValue="#{product.name}"/>
                                 </h:selectManyListbox>
                             </h:panelGrid>
                         </td>
@@ -55,6 +66,7 @@
                                  action="#{recipeController.createRecipe()}"
                                  ajax="false"/>
             </h:form>
+
 
         </ui:define>
     </ui:composition>

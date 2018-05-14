@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+>
+<h:head/>
+<h:body>
+    <ui:composition template="/WEB-INF/templates/mainLayout.xhtml">
+        <ui:param name="pageName" value="Add Savings"/>
+
+        <ui:define name="content">
+
+            <h:form>
+                <table>
+                    <tr>
+                        <td>
+                            <p:dataTable value="#{savingsController.saves}" var="save">
+                                <p:column headerText="Amount">
+                                    <h:outputText value="#{save.amount}"/>
+                                </p:column>
+                                <p:column headerText="Update date">
+                                    <h:outputText value="#{save.update}"/>
+                                </p:column>
+                            </p:dataTable>
+                            <h:panelGrid>
+                                <p:outputLabel for="amount" value="Amount"/>
+                                <p:inputText id="amount" value="#{savingsController.save.amount}"/>
+                                <p:message for="amount"/>
+                            </h:panelGrid>
+                        </td>
+                    </tr>
+                </table>
+                <p:commandButton value="Add savings"
+                                 action="#{savingsController.createSave()}"
+                                 ajax="false"/>
+            </h:form>
+            <br/>
+            <br/>
+            <h:form>
+                <p:outputLabel value="Total Amount"/>
+                <br/>
+                <p:outputLabel value="#{savingsController.getCount()}"/>
+            </h:form>
+            <h:form id="message">
+                <h:panelGroup>
+                    <p:outputLabel value="#{savingsController.messageSend}"></p:outputLabel>
+                </h:panelGroup>
+                <p:commandButton value="Send Savings" action="#{savingsController.sendSavings()}" update="message"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

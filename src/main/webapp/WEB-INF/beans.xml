@@ -6,7 +6,16 @@
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
         bean-discovery-mode="annotated">
 
+    <interceptors>
+        <class>lt.vu.interceptors.MethodLogger</class>
+    </interceptors>
     <alternatives>
         <class>org.apache.deltaspike.jpa.impl.transaction.ContainerManagedTransactionStrategy</class>
+        <class>lt.vu.usecases.cdi.SavingAmountsAlternative.TaxCount</class>
+        <!--<class>lt.vu.usecases.cdi.SavingSenderSpecializes.SecureSendSavings</class>-->
     </alternatives>
+    <decorators>
+        <class>lt.vu.usecases.cdi.DataFormatDecorator.FormatDecorator</class>
+    </decorators>
+
 </beans>

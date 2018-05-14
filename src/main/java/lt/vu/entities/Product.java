@@ -8,11 +8,15 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.johnzon.mapper.JohnzonIgnore;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
+@DynamicUpdate
 @Table(name = "PRODUCT")
 @NamedQueries({
         @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
@@ -74,8 +78,8 @@ public class Product implements Serializable {
   public void setLocation(Location location) {
     this.location = location;
   }
-  public List<Recipe> getRecipeList(){return recipeList;}
-  public void setRecipeList(List<Recipe> recip){this.recipeList = recip;}
+  public Set<Recipe> getRecipeList(){return recipeList;}
+  public void setRecipeList(Set<Recipe> recip){this.recipeList = recip;}
 
   @Id
   //@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -100,7 +104,7 @@ public class Product implements Serializable {
   @JohnzonIgnore
   private Location location;
 
-  @ManyToMany(mappedBy = "productList")
-  private List<Recipe> recipeList = new ArrayList<>();
+  @ManyToMany(mappedBy = "productList", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  private Set<Recipe> recipeList = new HashSet<>();
 
 }

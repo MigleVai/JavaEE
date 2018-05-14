@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head/>
+<h:body>
+    <h:form>
+        <h:selectOneMenu id="recipeName" value="#{generatingRecipe.recipeName}">
+            <f:selectItems value="#{recipeController.recipes}" var="recipe"
+                               itemValue="#{recipe.title}" />
+        </h:selectOneMenu>
+        <h:commandButton value="Generate recipe"
+                         disabled="#{generatingRecipe.recipeGenerationRunning}"
+                         action="#{generatingRecipe.generateRecipe()}"/>
+        <h:outputText value="#{generatingRecipe.recipeGenerationStatus}" />
+    </h:form>
+    <h:link outcome="add-recipe" value="Back to recipe page"/>
+</h:body>
+</html>

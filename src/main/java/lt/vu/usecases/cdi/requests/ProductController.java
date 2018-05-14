@@ -13,7 +13,9 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Model
 @Slf4j
@@ -41,7 +43,7 @@ public class ProductController {
 
     @Transactional
     public void createProduct() {
-        List<Integer> ids = getProductIds();
+        Set<Integer> ids = getProductIds();
         int tempID = 1;
         while(ids.contains(tempID))
         {
@@ -59,8 +61,8 @@ public class ProductController {
         products = productMapper.selectAll();
     }
 
-    private List<Integer> getProductIds(){
-        List<Integer> ids = new ArrayList<>();
+    private Set<Integer> getProductIds(){
+        Set<Integer> ids = new HashSet<>();
         for (Product item:products) {
             ids.add(item.getId());
         }

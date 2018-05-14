@@ -12,7 +12,8 @@ import java.io.Serializable;
 @Table(name = "SAVINGS")
 @NamedQueries({
         @NamedQuery(name = "Savings.findAll", query = "SELECT r FROM Savings r"),
-        @NamedQuery(name = "Savings.findById", query = "SELECT r FROM Savings r WHERE r.id = :id")})
+        @NamedQuery(name = "Savings.findById", query = "SELECT r FROM Savings r WHERE r.id = :id"),
+        @NamedQuery(name = "Savings.AllIds", query = "SELECT r.id FROM Savings r")})
 @EqualsAndHashCode(of = "update")
 @ToString(of = {"id", "amount", "update"})
 public class Savings implements Serializable{

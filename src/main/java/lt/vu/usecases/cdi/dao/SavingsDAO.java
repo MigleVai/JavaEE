@@ -25,5 +25,8 @@ public class SavingsDAO {
         Set<Savings> rec = new HashSet<>(em.createNamedQuery("Savings.findAll", Savings.class).getResultList());
         return rec;
     }
-
+    public Set<Integer> findAllIds(){
+        Set<Integer> rec = new HashSet<>(em.createNamedQuery("Savings.AllIds", Integer.class).getResultList());
+        return rec;
+    }
 }

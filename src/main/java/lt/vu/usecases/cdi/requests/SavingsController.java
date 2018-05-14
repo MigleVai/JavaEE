@@ -52,7 +52,7 @@ public class SavingsController {
     @Transactional
     public void createSave() {
         Set<Integer> ids = getSavesIds();
-        int tempID = 0;
+        int tempID = 1;
         while(ids.contains(tempID))
         {
             tempID++;
